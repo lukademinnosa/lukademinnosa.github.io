@@ -5,7 +5,9 @@ function* CreateIterator(data) {
   }
 }
 
-async function displayQuote(iterator) {
+async function displayQuote() {
+  // Create a generator to iterate over the data
+  const iterator = CreateIterator(data.quotes);
   const result = iterator.next();
 
   if (!result.done) {
@@ -20,16 +22,12 @@ async function displayQuote(iterator) {
 async function FetchData() {
   try {
     const response = await fetch('./scripts/quotes.json');
-    const data = await response.json();
-
-    // Create a generator to iterate over the data
-    const iterator = CreateIterator(data.quotes);
+    const data = await response.json();  
 
     // Start displaying quotes
-    displayQuote(iterator);
+    displayQuote();
   } catch (error) {
-
-    // console.error("Error fetching data:", error);
+    document.getElementById('quote').innerHTML = "Error fetching data:", error";
   }
 }
 
