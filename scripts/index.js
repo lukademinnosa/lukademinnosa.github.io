@@ -27,7 +27,7 @@ async function FetchData() {
     // Start displaying quotes
     displayQuote(data);
   } catch (error) {
-    document.getElementById('quote').innerHTML = "Error fetching data:", error";
+    document.getElementById('quote').innerHTML = "Error fetching data";
   }
 }
 
