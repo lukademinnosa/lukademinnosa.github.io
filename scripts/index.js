@@ -5,27 +5,25 @@ function* CreateIterator(data) {
   }
 }
 
-async function displayQuote(data) {
-  // Create a generator to iterate over the data
-  const iterator = CreateIterator(data.quotes);
-  const result = iterator.next();
-
-  if (!result.done) {
-    const quote = result.value;
-    const quoteElement = document.getElementById('quote');
-    quoteElement.innerHTML = quote.quote;
-    document.getElementById('author').innerHTML = quote.author;
-    setTimeout(displayQuote, 5000); // Delay of 5 seconds
-  }
-}
 // Load the data from the json file
 async function FetchData() {
   try {
     const response = await fetch('./scripts/quotes.json');
     const data = await response.json();  
+    const iterator = CreateIterator(data.quotes); // Create a generator to iterate over the data  
+    async function displayQuote() {
+      const result = iterator.next();
 
+      if (!result.done) {
+        const quote = result.value;
+        const quoteElement = document.getElementById('quote');
+        quoteElement.innerHTML = quote.quote;
+        document.getElementById('author').innerHTML = quote.author;
+        setTimeout(displayQuote, 5000); // Delay of 5 seconds
+      }
+}
     // Start displaying quotes
-    displayQuote(data);
+    displayQuote();
   } catch (error) {
     document.getElementById('quote').innerHTML = "Error fetching data";
   }
