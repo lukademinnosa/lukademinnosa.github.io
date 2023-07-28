@@ -9,7 +9,7 @@ body {
   display: grid;
   padding: 10px 20px 0;
   margin: 0 auto;
-  grid-template-columns: minmax(300px, 1fr) minmax(400px, 3fr);
+  grid-template-columns: repeat(2, minmax(300px, 1fr)) minmax(400px, 3fr);
   column-gap: 20px;
   align-content: center;
   justify-content: center;
@@ -66,10 +66,6 @@ main {
     min-height: 100vh;
   }
 
-  header h1 {
-    font-size: 20px !important;
-  }
-
   header {
     min-height: auto !important;
   }
@@ -86,11 +82,6 @@ main {
   display: grid;
   align-content: center;
   justify-content: center;
-}
-
-header h1 {
-  font-size: 30px;
-  padding: 10px;
 }
 
 ul {
